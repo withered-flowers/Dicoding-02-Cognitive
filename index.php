@@ -42,7 +42,8 @@ use MicrosoftAzure\Storage\Blob\Models\CreateContainerOptions;
 use MicrosoftAzure\Storage\Blob\Models\PublicAccessType;
 
 if (isset($_POST['uploadMe'])) {
-    $connectionString = "DefaultEndpointsProtocol=https;AccountName=".getenv('ACCOUNT_NAME').";AccountKey=".getenv('ACCOUNT_KEY');
+    // $connectionString = "DefaultEndpointsProtocol=https;AccountName=".getenv('ACCOUNT_NAME').";AccountKey=".getenv('ACCOUNT_KEY');
+    $connectionString = "DefaultEndpointsProtocol=https;AccountName="."sadicoding".";AccountKey="."pFf87eLc5bBkD0XymIdTL9qg0gxanFfa3GJ1E4lLvZ8kSPUrnEnh+9j+wpYQo42s24Ek1lxKEMIdHylMMWs0wA==";
 
     // Create blob client.
     $blobClient = BlobRestProxy::createBlobService($connectionString);
@@ -178,7 +179,7 @@ if (isset($_POST['uploadMe'])) {
             // **********************************************
     
             // Replace <Subscription Key> with your valid subscription key.
-            var subscriptionKey = "fc67ccd4477d4ce4bf866c60ab250c94";
+            var subscriptionKey = "2f3cfe67f3cb466fb78d74c2fce2aa65";
     
             // You must use the same Azure region in your REST API method as you used to
             // get your subscription keys. For example, if you got your subscription keys
