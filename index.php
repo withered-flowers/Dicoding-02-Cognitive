@@ -89,9 +89,9 @@ if (isset($_POST['uploadMe'])) {
             // fclose($myfile);
             
             # Upload file as a block blob
-            echo "Uploading BlockBlob: ".PHP_EOL;
-            echo $fileToUpload_name;
-            echo "<br />";
+            // echo "Uploading BlockBlob: ".PHP_EOL;
+            // echo $fileToUpload_name;
+            // echo "<br />";
             
             $content = fopen($fileToUpload_tmp_name.".", "r");
 
@@ -102,26 +102,25 @@ if (isset($_POST['uploadMe'])) {
             $listBlobsOptions = new ListBlobsOptions();
             $listBlobsOptions->setPrefix($fileToUpload_name);
 
-            echo "These are the blobs present in the container: ";
+            // echo "These are the blobs present in the container: ";
 
             do{
                 $result = $blobClient->listBlobs($containerName, $listBlobsOptions);
                 foreach ($result->getBlobs() as $blob)
                 {
-                    echo $blob->getName().": ".$blob->getUrl()."<br />";
-
+                    // echo $blob->getName().": ".$blob->getUrl()."<br />";
                     $fileUploaded_path = $blob->getUrl();
                 }
             
                 $listBlobsOptions->setContinuationToken($result->getContinuationToken());
             } while($result->getContinuationToken());
-            echo "<br />";
+            // echo "<br />";
 
             // Get blob.
             // echo "This is the content of the blob uploaded: ";
             // $blob = $blobClient->getBlob($containerName, $fileToUpload_name);
             // fpassthru($blob->getContentStream());
-            echo "<br />";
+            // echo "<br />";
         }
         catch(ServiceException $e){
             // Handle exception based on error codes and messages.
@@ -221,8 +220,15 @@ if (isset($_POST['uploadMe'])) {
             })
     
             .done(function(data) {
-                // Show formatted JSON on webpage.
+                // Tampilkan image.
                 document.querySelector("#sourceImage").src = sourceImageUrl;
+
+                // Tampilkan info
+                $("#responseCategories").html(JSON.stringify(data.categories));
+                $("#responseCaptions").html(JSON.stringify(data.description.captions));
+                $("#responseTags").html(JSON.stringify(data.description.tags));
+                
+                // Tampilkan seluruh informasi
                 $("#responseTextArea").val(JSON.stringify(data, null, 2));
             })
     
@@ -254,9 +260,21 @@ if (isset($_POST['uploadMe'])) {
 
     <image id="sourceImage" width="400px">
     </image>
+    
+<?php if(isset($_POST['uploadMe'])) { ?>
+    <div>
+        <div>Categories</div>
+        <div id="responseCategories"></div>
+        
+        <div>Captions</div>
+        <div id="responseCaptions"></div>
 
-    <div id="responseTextArea">
+        <div>Tags</div>
+        <div id="responseTags"></div>
+        
+        <textarea id="responseTextArea" rows="20" cols="100"></textarea>
     </div>
+<?php } ?>
 </body>
 </html>
 <!-- <form method="post" action="index.php?Cleanup&containerName=<?php //echo $containerName; ?>">
