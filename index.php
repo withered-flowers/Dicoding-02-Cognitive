@@ -169,7 +169,7 @@ if (isset($_POST['uploadMe'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Upload and Analyze</title>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
 </head>
 <body>
     <script language="javascript">
@@ -195,7 +195,7 @@ if (isset($_POST['uploadMe'])) {
     
             // Request parameters.
             var params = {
-                "visualFeatures": "Categories,Description,Color",
+                "visualFeatures": "Categories,Description",
                 "details": "",
                 "language": "en",
             };
