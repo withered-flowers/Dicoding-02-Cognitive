@@ -103,13 +103,13 @@ if (isset($_POST['uploadMe'])) {
             $listBlobsOptions = new ListBlobsOptions();
             $listBlobsOptions->setPrefix($fileToUpload_name);
 
-            // echo "These are the blobs present in the container: ";
+            echo "These are the blobs present in the container: ";
 
             do{
                 $result = $blobClient->listBlobs($containerName, $listBlobsOptions);
                 foreach ($result->getBlobs() as $blob)
                 {
-                    // echo $blob->getName().": ".$blob->getUrl()."<br />";
+                    echo $blob->getName().": ".$blob->getUrl()."<br />";
                     $fileUploaded_path = $blob->getUrl();
                 }
             
