@@ -240,6 +240,8 @@ if (isset($_POST['uploadMe'])) {
                 errorString += (jqXHR.responseText === "") ? "" :
                     jQuery.parseJSON(jqXHR.responseText).message;
                 alert(errorString);
+
+                console.log(sourceImageUrl);
             });
         };
         
